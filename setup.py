@@ -23,6 +23,8 @@ __version__="$Revision$"
 
 import setuptools
 from setuptools import (setup, Extension)
+from setuptools.command.install import install
+
 setuptools_version = setuptools.__version__
 print('Using setuptools (version %s).' % setuptools_version)
 
@@ -148,6 +150,23 @@ CLASSIFIERS = [
     "Topic :: Software Development :: Libraries :: pygame",
     ]
 
+class PostInstallHook(install):
+    def run(self):
+        import os
+        import shutil
+        recopy_list = ['Box2D.py', '__init__.py']
+
+        install.run(self)
+    
+        dest = os.path.split(self.get_outputs()[0])[0]
+        for fname in recopy_list:
+            local_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), library_base, library_name, fname)
+            installed_path = os.path.join(dest, fname)
+
+            print('Re-copying {} --> {}'.format(local_path, installed_path))
+            shutil.copyfile(local_path, installed_path)
+
+
 write_init()
 
 setup_dict = dict(
@@ -169,6 +188,8 @@ setup_dict = dict(
                          'egg_info' : { 'egg_base' : library_base },
                         },
     ext_modules      = [ pybox2d_extension ],
+    cmdclass         = {'install': PostInstallHook},
+
 #   use_2to3         = (sys.version_info >= (3,)),
     )
 
