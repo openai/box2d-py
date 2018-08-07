@@ -151,6 +151,12 @@ CLASSIFIERS = [
     ]
 
 class PostInstallHook(install):
+    '''
+    Describes actions to be executed after the install. 
+    In this case, install has the wrong order of operations -
+    it first copies *.py files, then builds *.py files using swig.
+    This class copies new *.py files one more time after install. 
+    '''
     def run(self):
         import os
         import shutil
