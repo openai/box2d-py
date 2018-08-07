@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: box2d-py
+Version: 2.3.4
+Summary: Python Box2D
+Home-page: https://github.com/openai/box2d-py
+Author: Ken Lauer
+Author-email: sirkne@gmail.com
+License: zlib
+Description:  2D physics library Box2D 2.3 for usage in Python.
+        
+            After installing please be sure to try out the testbed demos.
+            They require either pygame or pyglet and are available on the
+            homepage.
+        
+            pybox2d homepage: http://pybox2d.googlecode.com
+            Box2D homepage: http://www.box2d.org
+            
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: zlib/libpng License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Libraries :: pygame
