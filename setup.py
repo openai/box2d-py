@@ -23,6 +23,8 @@ __version__="$Revision$"
 
 import setuptools
 from setuptools import (setup, Extension)
+from setuptools.command.install import install
+
 setuptools_version = setuptools.__version__
 print('Using setuptools (version %s).' % setuptools_version)
 
@@ -47,7 +49,7 @@ if setuptools_version:
 
 # release version number
 box2d_version  = '2.3'
-release_number = 1
+release_number = 4
 
 # create the version string
 version_str = "%s.%s" % (box2d_version, release_number)
@@ -148,16 +150,39 @@ CLASSIFIERS = [
     "Topic :: Software Development :: Libraries :: pygame",
     ]
 
+class PostInstallHook(install):
+    '''
+    Describes actions to be executed after the install. 
+    In this case, install has the wrong order of operations -
+    it first copies *.py files, then builds *.py files using swig.
+    This class copies new *.py files one more time after install. 
+    '''
+    def run(self):
+        import os
+        import shutil
+        recopy_list = ['Box2D.py', '__init__.py']
+
+        install.run(self)
+    
+        dest = os.path.split(self.get_outputs()[0])[0]
+        for fname in recopy_list:
+            local_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), library_base, library_name, fname)
+            installed_path = os.path.join(dest, fname)
+
+            print('Re-copying {} --> {}'.format(local_path, installed_path))
+            shutil.copyfile(local_path, installed_path)
+
+
 write_init()
 
 setup_dict = dict(
     name             = "box2d-py",
     version          = version_str,
     author           = "Ken Lauer",
-    author_email     = "sirkne at gmail dot com",
+    author_email     = "sirkne@gmail.com",
     description      = "Python Box2D",
     license          = "zlib",
-    url              ="http://pybox2d.googlecode.com/",
+    url              = "https://github.com/openai/box2d-py",
     long_description = LONG_DESCRIPTION,
     classifiers      = CLASSIFIERS,
     packages         = ['Box2D', 'Box2D.b2'],
@@ -169,6 +194,8 @@ setup_dict = dict(
                          'egg_info' : { 'egg_base' : library_base },
                         },
     ext_modules      = [ pybox2d_extension ],
+    cmdclass         = {'install': PostInstallHook},
+
 #   use_2to3         = (sys.version_info >= (3,)),
     )
 
