@@ -1,6 +1,7 @@
 set -ex
 
 cd tests
+pip3 install nose coverage
 python3 -m nosetests -v -w . --with-coverage --cover-package=Box2D
 cd ..
 
@@ -11,7 +12,7 @@ if [[ ! -z "$TRAVIS_TAG" ]]; then
     ls -lht /tmp/wheelhouse
 
     pip3 install --user twine
-    python3 -m twine upload /tmp/wheelhouse/atari_py-*
+    python3 -m twine upload /tmp/wheelhouse/box2d_py-*
 
     if [[ ! -z "$DEPLOY_SDIST" ]]; then
         python3 setup.py sdist       
