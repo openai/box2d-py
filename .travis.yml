@@ -5,6 +5,7 @@ matrix:
         - DEPLOY_SDIST=true
       install:
         - brew install swig
+        - pip3 install . 
       script: 
         - ./build_and_deploy.sh
 
