@@ -1,8 +1,8 @@
 FROM python:3.6
 
 RUN apt-get -y update && \
-    apt-get -y install cmake && \
-    pip install pytest 
+    apt-get -y install swig && \
+    pip install nose coveralls coverage
     
 COPY . /root/code
 WORKDIR /root/code

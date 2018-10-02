@@ -1,8 +1,10 @@
 set -ex
 
-pip3 install pytest
-pip3 install .
-pytest .
+
+cd tests
+nosetests -v -w . --with-coverage --cover-package=Box2D
+coveralls
+cd ..
 
 if [[ ! -z "$TRAVIS_TAG" ]]; then
     
