@@ -2,7 +2,7 @@ set -ex
 
 cd tests
 pip3 install nose coverage
-python3 -m nosetests -v -w . --with-coverage --cover-package=Box2D
+python3 -m nose -v -w . --with-coverage --cover-package=Box2D
 cd ..
 
 if [[ ! -z "$TRAVIS_TAG" ]]; then
