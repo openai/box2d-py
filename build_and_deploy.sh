@@ -3,13 +3,12 @@ set -ex
 
 cd tests
 nosetests -v -w . --with-coverage --cover-package=Box2D
-coveralls
 cd ..
 
 if [[ ! -z "$TRAVIS_TAG" ]]; then
     
     PYPLATFORM=$(python3 get_platform.py)
-    pip3 wheel . --wheel-dir=/tmp/wheelhouse --build-option --plat-name=$PYPLATFORM
+    pip3 wheel . --wheel-dir=/tmp/wheelhouse --build-option --plat-name=$PYPLATFORM 
     ls -lht /tmp/wheelhouse
 
     pip3 install --user twine
