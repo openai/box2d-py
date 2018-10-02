@@ -8,7 +8,6 @@ matrix:
         - pip3 install nose coverage coveralls
       script: 
         - ./build_and_deploy.sh
-        - coveralls
 
     - os: linux
       env: 

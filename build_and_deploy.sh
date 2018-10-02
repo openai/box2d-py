@@ -1,8 +1,7 @@
 set -ex
 
-
 cd tests
-nosetests -v -w . --with-coverage --cover-package=Box2D
+python3 -m nosetests -v -w . --with-coverage --cover-package=Box2D
 cd ..
 
 if [[ ! -z "$TRAVIS_TAG" ]]; then
