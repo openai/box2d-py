@@ -9,17 +9,30 @@ matrix:
       script: 
         - ./build_and_deploy.sh
 
+
     - os: linux
+      env:
+        - PYTHON_VER=3.5
       install: 
         - docker build -t box2d-py-img -f dockerfile.${PYTHON_VER} . 
       script: 
         - docker run -e TRAVIS_TAG=$TRAVIS_TAG -e TWINE_USERNAME=$TWINE_USERNAME -e TWINE_PASSWORD=$TWINE_PASSWORD box2d-py-img bash ./build_and_deploy.sh
     
 
-
-env:
-    matrix:
-        - PYTHON_VER=3.5
+    - os: linux
+      env:
         - PYTHON_VER=3.6
+      install: 
+        - docker build -t box2d-py-img -f dockerfile.${PYTHON_VER} . 
+      script: 
+        - docker run -e TRAVIS_TAG=$TRAVIS_TAG -e TWINE_USERNAME=$TWINE_USERNAME -e TWINE_PASSWORD=$TWINE_PASSWORD box2d-py-img bash ./build_and_deploy.sh
+
+
+    - os: linux
+      env:
         - PYTHON_VER=3.7
+      install: 
+        - docker build -t box2d-py-img -f dockerfile.${PYTHON_VER} . 
+      script: 
+        - docker run -e TRAVIS_TAG=$TRAVIS_TAG -e TWINE_USERNAME=$TWINE_USERNAME -e TWINE_PASSWORD=$TWINE_PASSWORD box2d-py-img bash ./build_and_deploy.sh
 
