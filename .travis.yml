@@ -10,11 +10,6 @@ matrix:
         - ./build_and_deploy.sh
 
     - os: linux
-      env:
-        matrix:
-            - PYTHON_VER=3.5
-            - PYTHON_VER=3.6
-            - PYTHON_VER=3.7
       install: 
         - docker build -t box2d-py-img -f dockerfile.${PYTHON_VER} . 
       script: 
@@ -22,4 +17,9 @@ matrix:
     
 
 
-        
+env:
+    matrix:
+        - PYTHON_VER=3.5
+        - PYTHON_VER=3.6
+        - PYTHON_VER=3.7
+
