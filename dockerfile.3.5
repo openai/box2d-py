@@ -1,0 +1,10 @@
+FROM python:3.5
+
+RUN apt-get -y update && \
+    apt-get -y install swig && \
+    pip install nose coveralls coverage
+    
+COPY . /root/code
+WORKDIR /root/code
+
+RUN pip install . 
