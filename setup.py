@@ -49,7 +49,7 @@ if setuptools_version:
 
 # release version number
 box2d_version  = '2.3'
-release_number = 5
+release_number = 6
 
 # create the version string
 version_str = "%s.%s" % (box2d_version, release_number)
