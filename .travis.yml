@@ -1,6 +1,7 @@
 matrix:
     include:
     - os: osx
+      osx_image: xcode8.3
       env:
         - DEPLOY_SDIST=true
       install:
