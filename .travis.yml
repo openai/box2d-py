@@ -3,7 +3,7 @@ matrix:
 
     - os: linux
       env:
-        - REPO_DIR=$PWD
+        - REPO_DIR=.
         - BUILD_COMMIT=$TRAVIS_COMMIT
         - PLAT=x86_64
 
