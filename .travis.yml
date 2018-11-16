@@ -11,11 +11,11 @@ matrix:
       install: 
         - git clone https://github.com/matthew-brett/multibuild
         - . multibuild/common_utils.sh
-        - . multibuild/library_builders.sh
         - . multibuild/travis_steps.sh
-        - before_install 
+        - sudo source multibuild/library_builders.sh
         - sudo build_swig
-        - clean_code $REPO_DIR $BUILD_COMMIT
+        - before_install 
+         clean_code $REPO_DIR $BUILD_COMMIT
         - build_wheel $REPO_DIR $PLAT
       script: 
         - install_run $PLAT
