@@ -11,6 +11,7 @@ matrix:
       install: 
         - git clone https://github.com/matthew-brett/multibuild
         - . multibuild/common_utils.sh
+        - . multibuild/library_builders.sh
         - . multibuild/travis_steps.sh
         - before_install 
         - build_swig
