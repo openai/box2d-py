@@ -1,70 +1,20 @@
 matrix:
-    include:
-    - os: osx
-      osx_image: xcode8.3
-      env:
-        - DEPLOY_SDIST=true
-      install:
-        - brew install swig
-        - brew upgrade python
-        - curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o ~/install_miniconda.sh
-        - bash ~/install_miniconda.sh -b -p $HOME/miniconda
-        - export PATH="$HOME/miniconda/bin:$PATH"
-        - conda install -y python==3.5
-         
-      script: 
-        - ./build_and_deploy.sh
-
-    - os: osx
-      osx_image: xcode8.3
-      install:
-        - brew install swig
-        - brew upgrade python
-        - curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o ~/install_miniconda.sh
-        - bash ~/install_miniconda.sh -b -p $HOME/miniconda
-        - export PATH="$HOME/miniconda/bin:$PATH"
-        - conda install -y python==3.6
-         
-      script: 
-        - ./build_and_deploy.sh
-
-    - os: osx
-      osx_image: xcode8.3
-      install:
-        - brew install swig
-        - brew upgrade python
-        - curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o ~/install_miniconda.sh
-        - bash ~/install_miniconda.sh -b -p $HOME/miniconda
-        - export PATH="$HOME/miniconda/bin:$PATH"
-        - conda install -y python==3.7
-         
-      script: 
-        - ./build_and_deploy.sh
-
 
     - os: linux
       env:
-        - PYTHON_VER=3.5
+        - REPO_DIR=$PWD
+        - BUILD_COMMIT=$TRAVIS_COMMIT
+        - PLAT=x86_64
+
       install: 
-        - docker build -t box2d-py-img -f dockerfile.${PYTHON_VER} . 
+        - git clone https://github.com/matthew-brett/multibuild ../multibuild
+        - . ../multibuild/common_utils.sh
+        - . ../multibuild/travis_steps.sh
+        - before_install 
+        - clean_code $REPO_DIR $BUILD_COMMIT
+        - build_wheel $REPO_DIR $PLAT
       script: 
-        - docker run -e TRAVIS_TAG=$TRAVIS_TAG -e TWINE_USERNAME=$TWINE_USERNAME -e TWINE_PASSWORD=$TWINE_PASSWORD box2d-py-img bash ./build_and_deploy.sh
+        - install_run $PLAT
     
 
-    - os: linux
-      env:
-        - PYTHON_VER=3.6
-      install: 
-        - docker build -t box2d-py-img -f dockerfile.${PYTHON_VER} . 
-      script: 
-        - docker run -e TRAVIS_TAG=$TRAVIS_TAG -e TWINE_USERNAME=$TWINE_USERNAME -e TWINE_PASSWORD=$TWINE_PASSWORD box2d-py-img bash ./build_and_deploy.sh
-
-
-    - os: linux
-      env:
-        - PYTHON_VER=3.7
-      install: 
-        - docker build -t box2d-py-img -f dockerfile.${PYTHON_VER} . 
-      script: 
-        - docker run -e TRAVIS_TAG=$TRAVIS_TAG -e TWINE_USERNAME=$TWINE_USERNAME -e TWINE_PASSWORD=$TWINE_PASSWORD box2d-py-img bash ./build_and_deploy.sh
 
