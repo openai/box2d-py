@@ -6,8 +6,8 @@ matrix:
         - DEPLOY_SDIST=true
       install:
         - brew install swig
-        # - brew install python3
-        - curl https://repo.anaconda.com/miniconda/Miniconda2-latest-MacOSX-x86_64.sh -o ~/install_miniconda.sh
+        - brew upgrade python
+        - curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o ~/install_miniconda.sh
         - bash ~/install_miniconda.sh -b -p $HOME/miniconda
         - export PATH="$HOME/miniconda/bin:$PATH"
         - which conda
