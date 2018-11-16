@@ -10,7 +10,37 @@ matrix:
         - curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o ~/install_miniconda.sh
         - bash ~/install_miniconda.sh -b -p $HOME/miniconda
         - export PATH="$HOME/miniconda/bin:$PATH"
+        - conda install -y python==3.5
+         
+      script: 
+        - ./build_and_deploy.sh
+
+    - os: osx
+      osx_image: xcode8.3
+      env:
+        - DEPLOY_SDIST=true
+      install:
+        - brew install swig
+        - brew upgrade python
+        - curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o ~/install_miniconda.sh
+        - bash ~/install_miniconda.sh -b -p $HOME/miniconda
+        - export PATH="$HOME/miniconda/bin:$PATH"
         - conda install -y python==3.6
+         
+      script: 
+        - ./build_and_deploy.sh
+
+    - os: osx
+      osx_image: xcode8.3
+      env:
+        - DEPLOY_SDIST=true
+      install:
+        - brew install swig
+        - brew upgrade python
+        - curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o ~/install_miniconda.sh
+        - bash ~/install_miniconda.sh -b -p $HOME/miniconda
+        - export PATH="$HOME/miniconda/bin:$PATH"
+        - conda install -y python==3.7
          
       script: 
         - ./build_and_deploy.sh
