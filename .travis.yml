@@ -6,6 +6,7 @@ matrix:
         - REPO_DIR=.
         - BUILD_COMMIT=$TRAVIS_COMMIT
         - PLAT=x86_64
+        - MB_PYTHON_VERSION=3.5
 
       install: 
         - git clone https://github.com/matthew-brett/multibuild
