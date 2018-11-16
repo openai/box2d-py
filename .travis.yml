@@ -4,6 +4,7 @@ matrix:
     - os: linux
       env:
         - REPO_DIR=.
+        - BUILD_DEPENDS="swig"
         - BUILD_COMMIT=$TRAVIS_COMMIT
         - PLAT=x86_64
         - MB_PYTHON_VERSION=3.5
