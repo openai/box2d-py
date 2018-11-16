@@ -9,3 +9,7 @@ function pre_build {
     cd ..
 }
 
+function run_tests {
+    echo "Hello world with box2d-py"
+}
+

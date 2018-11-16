@@ -17,6 +17,12 @@ matrix:
         - build_wheel $REPO_DIR $PLAT
       script: 
         - install_run $PLAT
+
+      after_success:
+        - pip install twine
+        - ls ./wheelhouse/*
+
+    
     
 
 
