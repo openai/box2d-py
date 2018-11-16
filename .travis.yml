@@ -11,7 +11,7 @@ matrix:
         - bash ~/install_miniconda.sh -b -p $HOME/miniconda
         - export PATH="$HOME/miniconda/bin:$PATH"
         - which conda
-        - conda install python==3.6
+        - conda install -y python==3.6
          
       script: 
         - ./build_and_deploy.sh
