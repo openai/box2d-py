@@ -17,8 +17,6 @@ matrix:
 
     - os: osx
       osx_image: xcode8.3
-      env:
-        - DEPLOY_SDIST=true
       install:
         - brew install swig
         - brew upgrade python
@@ -32,8 +30,6 @@ matrix:
 
     - os: osx
       osx_image: xcode8.3
-      env:
-        - DEPLOY_SDIST=true
       install:
         - brew install swig
         - brew upgrade python
