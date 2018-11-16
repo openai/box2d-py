@@ -19,8 +19,7 @@ matrix:
         - install_run $PLAT
 
       after_success:
-        - pip install twine
-        - ls ./wheelhouse/*
+        - ./deploy.sh
 
     
     
