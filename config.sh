@@ -4,7 +4,7 @@ function pre_build {
     build_swig
     pip install .
     pip install nose coverage
-    nose -v -w tests/ --with-coverage --cover-package=Box2D
+    nosetests -v -w tests/ --with-coverage --cover-package=Box2D
 }
 
 function run_tests {
