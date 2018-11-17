@@ -8,8 +8,10 @@ cd ..
 
 if [[ ! -z "$TRAVIS_TAG" ]]; then
     
-    PYPLATFORM=$(python3 get_platform.py)
-    pip wheel . --wheel-dir=/tmp/wheelhouse --build-option --plat-name=$PYPLATFORM 
+    # PYPLATFORM=$(python3 get_platform.py)
+    pip wheel . --wheel-dir=/tmp/wheelhouse
+    pip install auditwheel
+    auditwheel repair /tmp/wheelhouse/*
     ls -lht /tmp/wheelhouse
 
     pip install --user twine
