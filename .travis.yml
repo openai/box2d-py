@@ -22,8 +22,6 @@ matrix:
   include:
 
     - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.5
     
     - os: linux
       env:
@@ -33,21 +31,34 @@ matrix:
       env:
         - MB_PYTHON_VERSION=3.7
 
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.8
+
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.9
 
     - os: osx
-      osx_image: xcode8.3
-      env:
-        - MB_PYTHON_VERSION=3.5
-        - DEPLOY_SDIST=true
+      osx_image: xcode12.3
  
     - os: osx
-      osx_image: xcode8.3
+      osx_image: xcode12.3
       env:
         - MB_PYTHON_VERSION=3.6
  
     - os: osx
-      osx_image: xcode8.3
+      osx_image: xcode12.3
       env:
         - MB_PYTHON_VERSION=3.7
  
+     - os: osx
+      osx_image: xcode12.3
+      env:
+        - MB_PYTHON_VERSION=3.8
+
+    - os: osx
+      osx_image: xcode12.3
+      env:
+        - MB_PYTHON_VERSION=3.9
  
